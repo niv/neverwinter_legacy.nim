@@ -621,7 +621,9 @@ proc write*(io: Stream, root: GffRoot) =
             m.write(lang.int32)
             m.write(str2.len.int32)
             m.write(str2)
-          fieldData.write(m.getPosition.int32) # totalsz
+
+          # totalsize = size of stringStream (m) plus 4 bytes for strref plus 4 bytes for number of entries
+          fieldData.write((m.getPosition + 8).int32)
           fieldData.write(s.strref.int32)
           fieldData.write(s.entries.len.int32) #strcount
           m.setPosition(0)
