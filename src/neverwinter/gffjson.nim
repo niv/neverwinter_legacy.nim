@@ -104,6 +104,8 @@ proc gffStructFromJson*(j: JSONNode, result: GffStruct) =
 
     of "cexolocstring":
       expect(v["value"].kind == JObject, $v)
+      if v.hasKey("id"):
+        exo.strRef = v["id"].getNum.GffInt
       let exo = newCExoLocString()
       for kk, vv in pairs(v["value"].getFields):
         exo.entries[kk.parseInt] = vv.str
