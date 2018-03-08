@@ -23,7 +23,7 @@ type
   GffCExoString* = string
   GffResRef* = distinct string
   GffCExoLocString* = ref object
-    strRef*: int
+    strRef*: int32
     entries*: TableRef[int, string]
 
   GffVoid* = distinct string # seq[byte]
